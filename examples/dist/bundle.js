@@ -219,6 +219,7 @@ var Select = React.createClass({
 		newOptionCreator: React.PropTypes.func, // factory to create new options when allowCreate set
 		noResultsText: React.PropTypes.string, // placeholder displayed when there are no matching search results
 		onBlur: React.PropTypes.func, // onBlur handler: function(event) {}
+		onInputChange: React.PropTypes.func, // onInputChange handler: function(event) {}
 		onChange: React.PropTypes.func, // onChange handler: function(newValue) {}
 		onFocus: React.PropTypes.func, // onFocus handler: function(event) {}
 		onOptionLabelClick: React.PropTypes.func, // onCLick handler for value labels: function (value, event) {}
@@ -257,6 +258,7 @@ var Select = React.createClass({
 			newOptionCreator: undefined,
 			noResultsText: 'No results found',
 			onChange: undefined,
+			onInputChange: undefined,
 			onOptionLabelClick: undefined,
 			optionComponent: Option,
 			options: undefined,
@@ -693,6 +695,7 @@ var Select = React.createClass({
 				focusedOption: this._getNewFocusedOption(filteredOptions)
 			}, this._bindCloseMenuIfClickedOutside);
 		}
+		this.props.onInputChange(event.target.value);
 	},
 
 	autoloadAsyncOptions: function autoloadAsyncOptions() {
